@@ -7,10 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 
 @Entity
 @Table(name = "users")
-class User(
-    private var username: String,
-    private var password: String
-) : UserDetails {
+class User : UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +15,8 @@ class User(
     lateinit var firstname: String
     lateinit var lastname: String
     lateinit var email: String
+    private lateinit var username: String
+    private lateinit var password: String
     @Enumerated(EnumType.STRING)
     lateinit var role: Role
     var activated: Boolean = false

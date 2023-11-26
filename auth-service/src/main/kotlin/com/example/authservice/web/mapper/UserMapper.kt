@@ -5,10 +5,9 @@ import com.example.authservice.web.model.dto.UserAuthDto
 import com.example.authservice.web.model.dto.UserDto
 
 fun UserDto.toEntity(): User =
-    User(
-        username = this.username,
-        password = this.password,
-    ).also {
+    User().also {
+        it.username = this.username
+        it.password = this.password
         it.firstname = this.firstname
         it.lastname = this.lastname
         it.email = this.email
@@ -16,7 +15,7 @@ fun UserDto.toEntity(): User =
 
 
 fun UserAuthDto.toEntity(): User =
-    User(
-        username = this.username,
-        password = this.password
-    )
+    User().also {
+        it.username = this.username
+        it.password = this.password
+    }
