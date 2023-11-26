@@ -26,7 +26,7 @@ class MailServiceImpl(
     override fun activateUserByEmail(emailTo: String, username: String, activationCode: String) {
         val templateLocation = KindsOfEmailMessages.REGISTRATION_EMAIL.pathOfTemplate
         val subject = KindsOfSubjects.SUBJECT_FOR_REGISTRATION.subject
-        val endpoint = "activation"
+        val endpoint = "activate"
         val context = Context()
         context.setVariable("username", username)
         context.setVariable("activationLink", generateActivationLink(activationCode, host, endpoint))
