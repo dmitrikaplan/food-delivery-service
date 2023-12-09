@@ -21,14 +21,19 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("org.postgresql:postgresql")
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    //jwt
+    implementation (group = "io.jsonwebtoken", name  = "jjwt-api", version =  "0.11.5")
+    runtimeOnly(group = "io.jsonwebtoken", name = "jjwt-impl", version = "0.11.5")
+    runtimeOnly (group = "io.jsonwebtoken", name = "jjwt-jackson", version = "0.11.5")
 }
 
 tasks.withType<KotlinCompile> {

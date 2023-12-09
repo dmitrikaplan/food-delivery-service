@@ -1,6 +1,5 @@
-package com.example.authservice.web.jwt
+package com.example.domain.jwt
 
-import com.example.authservice.service.JwtService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

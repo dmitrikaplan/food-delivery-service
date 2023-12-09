@@ -1,6 +1,6 @@
 package com.example.authservice.domain.config
 
-import com.example.authservice.web.jwt.JwtAuthenticationFilter
+import com.example.domain.jwt.JwtAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager

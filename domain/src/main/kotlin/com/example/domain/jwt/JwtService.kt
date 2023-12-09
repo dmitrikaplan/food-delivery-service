@@ -1,4 +1,4 @@
-package com.example.authservice.service
+package com.example.domain.jwt
 
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders

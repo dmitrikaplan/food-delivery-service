@@ -1,4 +1,4 @@
-package com.example.authservice.domain.user
+package com.example.domain.user
 
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
 @Table(name = "users")
-class UserEntity : UserDetails {
+class User : UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null

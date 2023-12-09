@@ -20,9 +20,10 @@ repositories {
 }
 
 dependencies {
+	implementation(project(":domain"))
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-web:3.1.0")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-mail")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:3.1.0")
@@ -36,11 +37,6 @@ dependencies {
 	//tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-
-	//jwt
-	implementation (group = "io.jsonwebtoken", name  = "jjwt-api", version =  "0.11.5")
-	runtimeOnly(group = "io.jsonwebtoken", name = "jjwt-impl", version = "0.11.5")
-	runtimeOnly (group = "io.jsonwebtoken", name = "jjwt-jackson", version = "0.11.5")
 
 	//validation
 	implementation("org.springframework.boot:spring-boot-starter-validation")

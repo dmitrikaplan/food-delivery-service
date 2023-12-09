@@ -1,4 +1,4 @@
-package com.example.authservice.domain.user
+package com.example.domain.user
 
 import org.springframework.security.core.GrantedAuthority
 

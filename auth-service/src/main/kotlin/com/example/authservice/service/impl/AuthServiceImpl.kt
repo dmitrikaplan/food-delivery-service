@@ -2,13 +2,13 @@ package com.example.authservice.service.impl
 
 import com.example.authservice.domain.exception.UserAlreadyRegisteredException
 import com.example.authservice.domain.exception.UserNotFoundException
-import com.example.authservice.domain.user.Role
-import com.example.authservice.domain.user.UserEntity
-import com.example.authservice.repository.UserRepository
+import com.example.domain.user.User
+import com.example.domain.repository.UserRepository
 import com.example.authservice.service.AuthService
-import com.example.authservice.service.JwtService
 import com.example.authservice.service.MailService
 import com.example.authservice.web.model.response.JwtResponse
+import com.example.domain.jwt.JwtService
+import com.example.domain.user.Role
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -23,7 +23,7 @@ class AuthServiceImpl(
     private val mailService: MailService,
     private val jwtService: JwtService
 ): AuthService {
-    override fun registerUser(user: UserEntity) {
+    override fun registerUser(user: User) {
         userRepository.findUserByUsername(user.username)?.let {
             throw UserAlreadyRegisteredException()
         }
@@ -37,7 +37,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun registerAdmin(user: UserEntity) {
+    override fun registerAdmin(user: User) {
         userRepository.findUserByUsername(user.username)?.let {
             throw UserAlreadyRegisteredException()
         }
@@ -52,7 +52,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun authenticate(user: UserEntity): JwtResponse {
+    override fun authenticate(user: User): JwtResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 user.username,
@@ -79,7 +79,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun passwordRecovery(user: UserEntity) {
+    override fun passwordRecovery(user: User) {
         TODO("Not yet implemented")
     }
 }
