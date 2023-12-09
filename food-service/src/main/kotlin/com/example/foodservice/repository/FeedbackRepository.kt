@@ -1,12 +1,11 @@
 package com.example.foodservice.repository
 
 import com.example.foodservice.domain.entity.Feedback
-import com.example.foodservice.domain.entity.FeedbackId
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface FeedbackRepository: JpaRepository<Feedback, FeedbackId> {
+interface FeedbackRepository: JpaRepository<Feedback, Int> {
 
-    fun findAllByFoodId(foodId: Int): List<Feedback>
+    fun findAllByFood_FoodId(foodId: Int): List<Feedback>
 }

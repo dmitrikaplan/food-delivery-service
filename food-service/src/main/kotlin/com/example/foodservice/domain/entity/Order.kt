@@ -5,6 +5,7 @@ import com.example.foodservice.web.dto.OrderState
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -14,26 +15,27 @@ import jakarta.persistence.Table
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Orber")
 class Order{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var orderId: Int? = null
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "id")
     lateinit var user : User
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "addressId")
     lateinit var address : Address
+
     lateinit var orderDate: LocalDateTime
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     @JoinColumn(name = "paymentId")
     lateinit var payment : Payment
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cartId")
     lateinit var cart : Cart
 
