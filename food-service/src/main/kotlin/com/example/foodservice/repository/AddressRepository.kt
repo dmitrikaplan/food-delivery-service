@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AddressRepository: JpaRepository<Address, Int> {
 
+    fun findAddressByAddressId(addressId: Int): Address?
+
 }

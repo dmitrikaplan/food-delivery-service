@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class User : UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    var id: Int? = null
     lateinit var firstname: String
     lateinit var lastname: String
     lateinit var email: String

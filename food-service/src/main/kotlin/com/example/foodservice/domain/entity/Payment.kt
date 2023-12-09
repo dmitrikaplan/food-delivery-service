@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var paymentId: Long? = null
+    var paymentId: Int? = null
 
     @Id
     @ManyToOne
