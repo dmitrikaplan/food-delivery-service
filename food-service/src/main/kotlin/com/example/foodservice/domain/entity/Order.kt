@@ -37,7 +37,7 @@ class Order{
     @JoinColumn(name = "cartId")
     lateinit var cart : Cart
 
-    var fullPrice : Int? = null
+    var fullPrice : Int = 0
 
     @Enumerated(EnumType.STRING)
     lateinit var state: OrderState
