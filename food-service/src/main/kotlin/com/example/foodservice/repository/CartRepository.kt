@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CartRepository: JpaRepository<Cart, Int> {
 
+    fun findCartByCartId(cartId: Int): Cart?
+
 }
