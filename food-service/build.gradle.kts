@@ -24,12 +24,23 @@ dependencies{
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+    //kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    //postgres
     runtimeOnly("org.postgresql:postgresql")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+    //test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    //validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.hibernate.validator:hibernate-validator:8.0.1.Final")
+    implementation("jakarta.validation:jakarta.validation-api:3.0.2")
 }
 
 tasks.withType<KotlinCompile> {

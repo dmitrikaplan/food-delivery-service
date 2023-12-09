@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:3.1.0")
 
-
+	//kotlin
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
 	
