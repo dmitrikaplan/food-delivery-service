@@ -1,7 +1,7 @@
 package com.example.authservice.web.controller
 
-import com.example.authservice.domain.exception.UserAlreadyRegisteredException
-import com.example.authservice.domain.exception.UserNotFoundException
+import com.example.domain.exception.UserAlreadyRegisteredException
+import com.example.domain.exception.UserNotFoundException
 import com.example.authservice.service.AuthService
 import com.example.authservice.web.mapper.toEntity
 import com.example.authservice.web.model.dto.UserAuthDto

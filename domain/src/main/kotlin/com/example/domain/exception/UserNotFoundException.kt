@@ -1,4 +1,4 @@
-package com.example.authservice.domain.exception
+package com.example.domain.exception
 
 class UserNotFoundException: RuntimeException() {
 

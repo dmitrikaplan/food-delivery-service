@@ -1,7 +1,7 @@
 package com.example.authservice.service.impl
 
-import com.example.authservice.domain.exception.UserAlreadyRegisteredException
-import com.example.authservice.domain.exception.UserNotFoundException
+import com.example.domain.exception.UserAlreadyRegisteredException
+import com.example.domain.exception.UserNotFoundException
 import com.example.domain.user.User
 import com.example.domain.repository.UserRepository
 import com.example.authservice.service.AuthService

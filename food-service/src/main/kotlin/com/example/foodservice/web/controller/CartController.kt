@@ -1,6 +1,6 @@
 package com.example.foodservice.web.controller
 
-import com.example.authservice.domain.exception.UserNotFoundException
+import com.example.domain.exception.UserNotFoundException
 import com.example.foodservice.domain.exception.cart.CartNotFoundException
 import com.example.foodservice.domain.exception.cartDetail.CartDetailNotFoundException
 import com.example.foodservice.domain.exception.food.FoodNotFoundException

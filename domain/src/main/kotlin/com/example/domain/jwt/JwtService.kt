@@ -13,7 +13,7 @@ import java.security.Key
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-@Component
+@Service
 class JwtService{
 
     @Value("\${jwt.secret.access}")
