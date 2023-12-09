@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface FeedbackRepository: JpaRepository<Feedback, FeedbackId> {
 
+    fun findAllByFoodId(foodId: Int): List<Feedback>
 }
