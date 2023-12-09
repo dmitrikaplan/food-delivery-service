@@ -7,7 +7,6 @@ import java.time.LocalDateTime
 
 @Service
 interface OrderService {
-
     fun save(
         userId: Int,
         addressId: Int,
@@ -15,6 +14,5 @@ interface OrderService {
         paymentId: Int,
         cartId: Int,
     ): Int
-
     fun getOrder(orderId: Int): Order
 }

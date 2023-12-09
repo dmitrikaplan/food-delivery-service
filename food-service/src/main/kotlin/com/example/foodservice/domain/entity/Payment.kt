@@ -18,7 +18,7 @@ class Payment {
     var paymentId: Int? = null
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     lateinit var user: User
 
     var cardNumber: Long? = null

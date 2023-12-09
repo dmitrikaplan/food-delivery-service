@@ -10,6 +10,7 @@ import com.example.foodservice.domain.exception.payment.PaymentNotFoundException
 import com.example.foodservice.repository.*
 import com.example.foodservice.service.OrderService
 import com.example.foodservice.web.dto.OrderState
+import jakarta.transaction.Transactional
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
@@ -23,6 +24,7 @@ class OrderServiceImpl(
     private val cartRepository: CartRepository,
     private val cartDetailRepository: CartDetailRepository
 ): OrderService {
+    @Transactional
     override fun save(
         userId: Int,
         addressId: Int,
@@ -57,13 +59,7 @@ class OrderServiceImpl(
         return orderRepository.save(order).orderId!!
     }
 
-    override fun getOrder(orderId: Int): Order {
-        return orderRepository.findByIdOrNull(orderId)
-            ?: throw OrderNotFoundException()
-    }
+    override fun getOrder(orderId: Int) = orderRepository.findByIdOrNull(orderId) ?: throw OrderNotFoundException()
 
-    private fun computeFullPrice(cartId: Int): Int {
-        return cartDetailRepository.findAllByCartId(cartId)
-            .sumOf { it.quantity * it.food.price!! }
-    }
+    private fun computeFullPrice(cartId: Int) = cartDetailRepository.findAllByCart_CartId(cartId).sumOf { it.quantity * it.food.price!! }
 }

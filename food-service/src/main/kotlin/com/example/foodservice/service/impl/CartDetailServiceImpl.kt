@@ -36,9 +36,7 @@ class CartDetailServiceImpl(
     }
 
     @Transactional
-    override fun delete(cartDetailId: Int) {
-        cartDetailRepository.deleteById(cartDetailId)
-    }
+    override fun delete(cartDetailId: Int) = cartDetailRepository.deleteById(cartDetailId)
 
     @Transactional
     override fun update(cartDetailId: Int,  quantity: Int) {

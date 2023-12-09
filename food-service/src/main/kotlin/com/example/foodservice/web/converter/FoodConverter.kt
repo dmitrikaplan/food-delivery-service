@@ -11,15 +11,17 @@ object FoodConverter: Converter<FoodDto, Food> {
         entity.description,
         entity.price!!,
         entity.imageUrl,
-        entity.categories.map(CategoryConverter::toDto))
+        entity.categories.map(CategoryConverter::toDto)
+    )
 
     override fun toEntity(dto: FoodDto) = Food().apply {
-        // TODO
+        this.foodId = dto.foodId
+        this.foodName = dto.foodName
+        this.description = dto.description
+        this.price = dto.price
+        this.imageUrl = dto.imageUrl
+        this.categories = dto.categories.map(CategoryConverter::toEntity)
     }
 
-    fun toDto(entities: List<Food>): List<FoodDto>{
-        return entities.map {
-            toDto(it)
-        }
-    }
+    fun toDto(entities: List<Food>) = entities.map { toDto(it) }
 }

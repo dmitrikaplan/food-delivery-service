@@ -10,6 +10,6 @@ interface CartDetailRepository: JpaRepository<CartDetail, Int> {
 
     fun findCartDetailByCartDetailId(cartDetailId: Int): CartDetail?
 
-    fun findAllByCartId(cartId: Int): List<CartDetail>
+    fun findAllByCart_CartId(cartId: Int): List<CartDetail>
 
 }

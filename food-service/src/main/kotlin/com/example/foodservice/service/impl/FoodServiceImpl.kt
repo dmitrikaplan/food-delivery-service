@@ -13,23 +13,16 @@ class FoodServiceImpl(
 ): FoodService {
     @Value("\${page.size}")
     private var pageSize: Int? = null
-    override fun getPage(pageNumber: Int): List<Food> {
-        return foodRepository.findAll(PageRequest.of(pageNumber, pageSize!!)).content
-    }
+    override fun getPage(pageNumber: Int) = foodRepository.findAll(PageRequest.of(pageNumber, pageSize!!)).content
 
-    override fun getPageByCategoryName(pageNumber: Int, categoryName: String): List<Food> {
-
-        return foodRepository.findAll().filter {
-            it.categories.map {
+    override fun getPageByCategoryName(pageNumber: Int, categoryName: String) = foodRepository.findAll().filter {
+        it.categories.map {
                 category -> category.categoryName
-            }.contains(categoryName)
-        }.take(pageSize!!)
-    }
+        }.contains(categoryName)
+    }.take(pageSize!!)
 
-    override fun getPageByFoodName(pageNumber: Int, foodName: String): List<Food> {
-        return foodRepository.findAllByFoodNameContaining(
-            PageRequest.of(pageNumber, pageSize!!),
-            foodName
-        )
-    }
+    override fun getPageByFoodName(pageNumber: Int, foodName: String) = foodRepository.findAllByFoodNameContaining(
+        PageRequest.of(pageNumber, pageSize!!),
+        foodName
+    )
 }

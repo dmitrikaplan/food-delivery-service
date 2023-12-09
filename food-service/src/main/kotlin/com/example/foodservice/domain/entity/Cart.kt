@@ -17,7 +17,7 @@ class Cart {
     var cartId: Int? = null
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     lateinit var user: User
 
 }

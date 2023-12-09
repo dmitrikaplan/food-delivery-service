@@ -2,6 +2,7 @@ package com.example.foodservice.web.converter
 
 import com.example.foodservice.domain.entity.Order
 import com.example.foodservice.web.dto.OrderDto
+import java.lang.Error
 
 object OrderConverter: Converter<OrderDto, Order> {
     override fun toDto(entity: Order): OrderDto =
@@ -16,7 +17,5 @@ object OrderConverter: Converter<OrderDto, Order> {
             state = entity.state
         )
 
-    override fun toEntity(dto: OrderDto): Order {
-        return Order()
-    }
+    override fun toEntity(dto: OrderDto) = throw Error()
 }

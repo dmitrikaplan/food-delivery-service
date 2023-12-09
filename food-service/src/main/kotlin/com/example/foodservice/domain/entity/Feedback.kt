@@ -17,7 +17,7 @@ class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var feedbackId: Int? = null
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     lateinit var user: User
 
     @ManyToOne

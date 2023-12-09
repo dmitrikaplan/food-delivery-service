@@ -23,7 +23,5 @@ class CartServiceImpl(
         return cartRepository.save(cart).cartId!!
     }
 
-    override fun delete(cartId: Int) {
-        cartRepository.deleteById(cartId)
-    }
+    override fun delete(cartId: Int) = cartRepository.deleteById(cartId)
 }
