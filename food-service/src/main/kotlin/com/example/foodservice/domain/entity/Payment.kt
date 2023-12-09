@@ -17,9 +17,8 @@ class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var paymentId: Int? = null
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "id")
     lateinit var user: User
 
     var cardNumber: Long? = null

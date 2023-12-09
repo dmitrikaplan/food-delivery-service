@@ -13,6 +13,6 @@ class FeedBackServiceImpl(
 
     @Transactional
     override fun getFeedback(foodId: Int): List<Feedback> {
-        return feedbackRepository.findAllByFoodId(foodId)
+        return feedbackRepository.findAllByFood_FoodId(foodId)
     }
 }
