@@ -6,7 +6,7 @@ import com.example.foodservice.web.dto.FoodDto
 object FoodConverter: Converter<FoodDto, Food> {
     override fun toDto(entity: Food)
     = FoodDto(
-        entity.foodId!!,
+        entity.foodId,
         entity.foodName,
         entity.description,
         entity.price!!,
@@ -15,5 +15,11 @@ object FoodConverter: Converter<FoodDto, Food> {
 
     override fun toEntity(dto: FoodDto) = Food().apply {
         // TODO
+    }
+
+    fun toDto(entities: List<Food>): List<FoodDto>{
+        return entities.map {
+            toDto(it)
+        }
     }
 }
