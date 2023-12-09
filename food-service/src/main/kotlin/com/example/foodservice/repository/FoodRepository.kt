@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository
 interface FoodRepository: JpaRepository<Food, Int> {
 
     fun findAllByFoodNameContaining(pageable: Pageable, foodName: String): List<Food>
+
+    fun findFoodByFoodId(foodId: Int): Food?
 }
