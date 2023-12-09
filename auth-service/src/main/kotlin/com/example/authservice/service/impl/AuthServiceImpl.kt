@@ -3,7 +3,7 @@ package com.example.authservice.service.impl
 import com.example.authservice.domain.exception.UserAlreadyRegisteredException
 import com.example.authservice.domain.exception.UserNotFoundException
 import com.example.authservice.domain.user.Role
-import com.example.authservice.domain.user.User
+import com.example.authservice.domain.user.UserEntity
 import com.example.authservice.repository.UserRepository
 import com.example.authservice.service.AuthService
 import com.example.authservice.service.JwtService
@@ -23,7 +23,7 @@ class AuthServiceImpl(
     private val mailService: MailService,
     private val jwtService: JwtService
 ): AuthService {
-    override fun registerUser(user: User) {
+    override fun registerUser(user: UserEntity) {
         userRepository.findUserByUsername(user.username)?.let {
             throw UserAlreadyRegisteredException()
         }
@@ -37,7 +37,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun registerAdmin(user: User) {
+    override fun registerAdmin(user: UserEntity) {
         userRepository.findUserByUsername(user.username)?.let {
             throw UserAlreadyRegisteredException()
         }
@@ -52,7 +52,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun authenticate(user: User): JwtResponse {
+    override fun authenticate(user: UserEntity): JwtResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 user.username,
@@ -79,7 +79,7 @@ class AuthServiceImpl(
         userRepository.save(user)
     }
 
-    override fun passwordRecovery(user: User) {
+    override fun passwordRecovery(user: UserEntity) {
         TODO("Not yet implemented")
     }
 }

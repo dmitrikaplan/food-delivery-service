@@ -1,12 +1,12 @@
 package com.example.authservice.repository
 
-import com.example.authservice.domain.user.User
+import com.example.authservice.domain.user.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository: JpaRepository<User, Long> {
+interface UserRepository: JpaRepository<UserEntity, Long> {
 
-    fun findUserByUsername(username: String): User?
-    fun findUserByActivationCode(activationCode: String?): User?
+    fun findUserByUsername(username: String): UserEntity?
+    fun findUserByActivationCode(activationCode: String?): UserEntity?
 }

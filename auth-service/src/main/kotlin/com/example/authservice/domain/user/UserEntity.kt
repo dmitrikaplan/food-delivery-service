@@ -3,12 +3,10 @@ package com.example.authservice.domain.user
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
 
 @Entity
 @Table(name = "users")
-class User : UserDetails {
-
+class UserEntity : UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
