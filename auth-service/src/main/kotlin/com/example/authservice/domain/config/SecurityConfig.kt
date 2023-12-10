@@ -40,6 +40,7 @@ class SecurityConfig(
                 it.disable()
             }
             .authorizeHttpRequests {
+                it.requestMatchers("/api/v1/refresh").authenticated()
                 it.anyRequest().permitAll()
             }
             .sessionManagement{

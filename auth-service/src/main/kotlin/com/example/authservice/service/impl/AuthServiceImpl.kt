@@ -1,5 +1,9 @@
 package com.example.authservice.service.impl
 
+import com.example.authservice.domain.RefreshTokenNotFoundException
+import com.example.authservice.domain.entity.RefreshToken
+import com.example.authservice.domain.exception.RefreshTokenExpiredException
+import com.example.authservice.repository.RefreshTokenRepository
 import com.example.domain.exception.UserAlreadyRegisteredException
 import com.example.domain.exception.UserNotFoundException
 import com.example.domain.user.User
@@ -11,6 +15,8 @@ import com.example.domain.jwt.JwtService
 import com.example.domain.user.Role
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.UUID
@@ -21,7 +27,9 @@ class AuthServiceImpl(
     private val passwordEncoder: PasswordEncoder,
     private val authenticationManager: AuthenticationManager,
     private val mailService: MailService,
-    private val jwtService: JwtService
+    private val jwtService: JwtService,
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val userDetailsService: UserDetailsService
 ): AuthService {
     override fun registerUser(user: User) {
         userRepository.findUserByUsername(user.username)?.let {
@@ -63,8 +71,7 @@ class AuthServiceImpl(
         val userDetails = userRepository.findUserByUsername(user.username)!!
 
         val accessToken = jwtService.generateAccessToken(userDetails)
-        val refreshToken = jwtService.generateRefreshToken(userDetails)
-
+        val refreshToken = getRefreshToken(user, userDetails)
         return JwtResponse(accessToken, refreshToken)
     }
 
@@ -81,5 +88,51 @@ class AuthServiceImpl(
 
     override fun passwordRecovery(user: User) {
         TODO("Not yet implemented")
+    }
+
+    override fun refresh(token: String, username: String): JwtResponse {
+
+        if(!jwtService.isRefreshTokenValid(token)){
+            refreshTokenRepository.deleteByToken(token)
+            throw RefreshTokenExpiredException()
+        }
+
+        if(!refreshTokenRepository.existsByToken(token))
+            throw RefreshTokenNotFoundException()
+
+        val userDetails = userDetailsService.loadUserByUsername(username)
+
+        val accessToken = jwtService.generateAccessToken(userDetails)
+
+        return JwtResponse(accessToken, token)
+    }
+
+
+    private fun getRefreshToken(user: User, userDetails: UserDetails): String{
+
+        val refreshToken = refreshTokenRepository.findRefreshTokenByUser(user)
+            ?: return saveRefreshToken(user, userDetails)
+
+        if(!jwtService.isRefreshTokenValid(refreshToken.token))
+            return updateRefreshToken(refreshToken, userDetails)
+
+        return refreshToken.token
+    }
+
+    private fun updateRefreshToken(refreshToken: RefreshToken, userDetails: UserDetails): String {
+        val token = jwtService.generateRefreshToken(userDetails)
+        refreshToken.token = token
+        refreshTokenRepository.save(refreshToken)
+        return token
+    }
+
+    private fun saveRefreshToken(user: User, userDetails: UserDetails): String{
+        val token =  jwtService.generateRefreshToken(userDetails)
+        val refreshToken = RefreshToken().apply {
+            this.token = token
+            this.user = user
+        }
+        refreshTokenRepository.save(refreshToken)
+        return token
     }
 }

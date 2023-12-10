@@ -17,5 +17,5 @@ interface AuthService {
 
     fun passwordRecovery(user: User)
 
-
+    fun refresh(token: String, username: String): JwtResponse
 }
