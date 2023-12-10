@@ -54,7 +54,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-tasks.bootBuildImage {
-	builder.set("paketobuildpacks/builder-jammy-base:latest")
-}

@@ -54,7 +54,7 @@ class JwtService{
             )
             .setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1L)))
-            .signWith(getAccessSignInKey(), SignatureAlgorithm.HS512)
+            .signWith(getAccessSignInKey(), SignatureAlgorithm.HS256)
             .compact()
     }
 

@@ -1,6 +1,6 @@
 package com.example.authservice.service.impl
 
-import com.example.authservice.domain.RefreshTokenNotFoundException
+import com.example.authservice.domain.exception.RefreshTokenNotFoundException
 import com.example.authservice.domain.entity.RefreshToken
 import com.example.authservice.domain.exception.RefreshTokenExpiredException
 import com.example.authservice.repository.RefreshTokenRepository
@@ -71,7 +71,7 @@ class AuthServiceImpl(
         val userDetails = userRepository.findUserByUsername(user.username)!!
 
         val accessToken = jwtService.generateAccessToken(userDetails)
-        val refreshToken = getRefreshToken(user, userDetails)
+        val refreshToken = getRefreshToken(userDetails)
         return JwtResponse(accessToken, refreshToken)
     }
 
@@ -108,13 +108,13 @@ class AuthServiceImpl(
     }
 
 
-    private fun getRefreshToken(user: User, userDetails: UserDetails): String{
+    private fun getRefreshToken(user: User): String{
 
         val refreshToken = refreshTokenRepository.findRefreshTokenByUser(user)
-            ?: return saveRefreshToken(user, userDetails)
+            ?: return saveRefreshToken(user)
 
         if(!jwtService.isRefreshTokenValid(refreshToken.token))
-            return updateRefreshToken(refreshToken, userDetails)
+            return updateRefreshToken(refreshToken, user)
 
         return refreshToken.token
     }
@@ -126,8 +126,8 @@ class AuthServiceImpl(
         return token
     }
 
-    private fun saveRefreshToken(user: User, userDetails: UserDetails): String{
-        val token =  jwtService.generateRefreshToken(userDetails)
+    private fun saveRefreshToken(user: User): String{
+        val token =  jwtService.generateRefreshToken(user)
         val refreshToken = RefreshToken().apply {
             this.token = token
             this.user = user

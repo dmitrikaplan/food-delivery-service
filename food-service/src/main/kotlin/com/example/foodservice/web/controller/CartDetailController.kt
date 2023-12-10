@@ -5,6 +5,7 @@ import com.example.foodservice.domain.exception.cartDetail.CartDetailNotFoundExc
 import com.example.foodservice.domain.exception.food.FoodNotFoundException
 import com.example.foodservice.service.CartDetailService
 import com.example.foodservice.web.dto.CartDetailDto
+import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*
 class CartDetailController(
     private val cartDetailService: CartDetailService
 ) {
+
+    private val log = LoggerFactory.getLogger(javaClass)
 
     @PostMapping
     fun addToCart(@RequestBody cartDetailDto: CartDetailDto): ResponseEntity<String> {
@@ -24,8 +27,10 @@ class CartDetailController(
             )
             ResponseEntity.ok().body(id.toString())
         } catch (e: CartNotFoundException) {
+            log.error(e.message)
             ResponseEntity.badRequest().body(e.message)
         } catch (e: FoodNotFoundException) {
+            log.error(e.message)
             ResponseEntity.badRequest().body(e.message)
         }
     }
@@ -39,6 +44,7 @@ class CartDetailController(
             )
             ResponseEntity.ok().build()
         } catch (e: CartDetailNotFoundException){
+            log.error(e.message)
             ResponseEntity.badRequest().body(e.message)
         }
 

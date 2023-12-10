@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    war
-    id("org.springframework.boot") version "3.1.5"
+    id("org.springframework.boot") version "3.1.5" apply false
     id("io.spring.dependency-management") version "1.1.3"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
@@ -19,14 +18,20 @@ repositories {
     mavenCentral()
 }
 
+
+dependencyManagement {
+    imports {
+        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+    }
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("org.postgresql:postgresql")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 
@@ -45,8 +50,4 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-tasks.bootBuildImage {
-    builder.set("paketobuildpacks/builder-jammy-base:latest")
 }
