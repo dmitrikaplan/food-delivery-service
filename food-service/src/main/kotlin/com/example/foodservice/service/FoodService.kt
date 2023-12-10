@@ -8,4 +8,5 @@ interface FoodService {
     fun getPage(pageNumber: Int): List<Food>
     fun getPageByCategoryName(pageNumber: Int, categoryName: String): List<Food>
     fun getPageByFoodName(pageNumber: Int, foodName: String): List<Food>
+    fun addFood(food: Food)
 }
