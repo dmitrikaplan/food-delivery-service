@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/food/")
+@CrossOrigin(origins = ["http://localhost:8080/"])
 class FoodController(
     private val foodService: FoodService
 ) {

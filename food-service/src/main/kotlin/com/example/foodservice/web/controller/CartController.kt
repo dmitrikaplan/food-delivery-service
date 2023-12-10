@@ -9,6 +9,7 @@ import com.example.foodservice.service.CartService
 import com.example.foodservice.web.dto.CartDetailDto
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/cart")
+@CrossOrigin(origins = ["http://localhost:8080/"])
 class CartController(
     private val cartService: CartService
 ) {
