@@ -10,6 +10,7 @@ class RefreshToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var refreshTokenId: Int? = null
 
+    @Column(length = 1024)
     lateinit var token: String
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -1,4 +1,4 @@
-package com.example.authservice.domain
+package com.example.authservice.domain.exception
 
 class RefreshTokenNotFoundException: RuntimeException() {
 
