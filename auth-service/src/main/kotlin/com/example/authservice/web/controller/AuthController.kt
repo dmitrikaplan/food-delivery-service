@@ -53,9 +53,7 @@ class AuthController(
     @PostMapping("/authenticate")
     fun authenticate(@RequestBody @Validated userAuthDto: UserAuthDto): ResponseEntity<JwtResponse>{
         return try{
-            log.info("почему не работает на локал хосте ?")
            val jwtResponse = authService.authenticate(userAuthDto.toEntity())
-            log.info(jwtResponse.toString())
             ResponseEntity.ok().body(jwtResponse)
         } catch (e: UsernameNotFoundException){
             log.error(e.message)
