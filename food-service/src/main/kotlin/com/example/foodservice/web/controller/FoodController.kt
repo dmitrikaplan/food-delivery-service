@@ -4,6 +4,7 @@ import com.example.foodservice.service.FoodService
 import com.example.foodservice.web.converter.FoodConverter
 import com.example.foodservice.web.dto.FoodDto
 import jakarta.validation.constraints.Min
+import org.slf4j.LoggerFactory
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -13,6 +14,7 @@ class FoodController(
     private val foodService: FoodService
 ) {
 
+    private val log = LoggerFactory.getLogger(javaClass)
 
     @GetMapping("/page/{pageNumber}")
     fun getPage(

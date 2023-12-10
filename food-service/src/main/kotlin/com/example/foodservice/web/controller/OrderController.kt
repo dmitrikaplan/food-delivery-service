@@ -26,7 +26,6 @@ class OrderController(
 
     private val log = LoggerFactory.getLogger(javaClass)
 
-
     @PostMapping
     fun createOrder(@RequestBody orderDto: OrderDto): ResponseEntity<String>{
         return try{

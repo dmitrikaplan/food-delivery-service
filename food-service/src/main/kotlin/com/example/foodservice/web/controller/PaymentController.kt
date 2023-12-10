@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController
 class PaymentController(
     private val paymentService: PaymentService
 ) {
+
     private val log = LoggerFactory.getLogger(javaClass)
+
     @PostMapping
     fun createCart(@RequestBody payment: PaymentDto): ResponseEntity<Int> {
         return try {
