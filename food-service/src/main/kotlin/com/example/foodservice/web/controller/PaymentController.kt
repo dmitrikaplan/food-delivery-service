@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/payment/")
-@CrossOrigin(origins = ["http://localhost:8080/"])
+@CrossOrigin(origins = ["http://localhost:8080/", "https://kaplaan.ru/"])
 class PaymentController(
     private val paymentService: PaymentService
 ) {

@@ -14,14 +14,14 @@ import java.security.Principal
 
 @RestController
 @RequestMapping("/api/v1/cart")
-@CrossOrigin(origins = ["http://localhost:8080"])
+@CrossOrigin(origins = ["http://localhost:8080/", "https://kaplaan.ru/"])
 class CartController(
     private val cartService: CartService
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
 
-    @PostMapping()
+    @PostMapping
     fun createCart(principal: Principal): ResponseEntity<Int> {
         return try {
             log.info(principal.name)

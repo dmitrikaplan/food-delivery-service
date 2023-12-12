@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/cart-detail")
-@CrossOrigin(origins = ["http://localhost:8080/"])
+@CrossOrigin(origins = ["http://localhost:8080/", "https://kaplaan.ru/"])
 class CartDetailController(
     private val cartDetailService: CartDetailService
 ) {

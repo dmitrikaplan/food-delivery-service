@@ -21,7 +21,7 @@ import java.security.Principal
 @Validated
 @RestController
 @RequestMapping("/api/v1/auth/")
-@CrossOrigin(origins = ["http://localhost:8080/"])
+@CrossOrigin(origins = ["http://localhost:8080/", "https://kaplaan.ru/"])
 class AuthController(
     private val authService: AuthService
 ) {

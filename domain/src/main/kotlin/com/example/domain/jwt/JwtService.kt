@@ -36,7 +36,7 @@ class JwtService{
                 )
             )
             .setIssuedAt(Date(System.currentTimeMillis()))
-            .setExpiration(Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1L)))
+            .setExpiration(Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1L)))
             .signWith(getAccessSignInKey(), SignatureAlgorithm.HS256)
             .compact()
     }
@@ -53,7 +53,7 @@ class JwtService{
                 )
             )
             .setIssuedAt(Date(System.currentTimeMillis()))
-            .setExpiration(Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1L)))
+            .setExpiration(Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(30L)))
             .signWith(getAccessSignInKey(), SignatureAlgorithm.HS256)
             .compact()
     }
