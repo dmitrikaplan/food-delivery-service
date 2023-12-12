@@ -4,12 +4,7 @@ import com.example.domain.exception.UserNotFoundException
 import com.example.foodservice.service.CartService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
 @RestController
@@ -24,7 +19,6 @@ class CartController(
     @PostMapping
     fun createCart(principal: Principal): ResponseEntity<Int> {
         return try {
-            log.info(principal.name)
             ResponseEntity.ok().body(cartService.create(principal.name))
         } catch (e: UserNotFoundException) {
             log.error(e.message)

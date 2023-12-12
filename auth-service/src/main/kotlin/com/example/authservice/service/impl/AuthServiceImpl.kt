@@ -13,6 +13,7 @@ import com.example.authservice.service.MailService
 import com.example.authservice.web.model.response.JwtResponse
 import com.example.domain.jwt.JwtService
 import com.example.domain.user.Role
+import org.slf4j.LoggerFactory
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
@@ -31,6 +32,8 @@ class AuthServiceImpl(
     private val refreshTokenRepository: RefreshTokenRepository,
     private val userDetailsService: UserDetailsService
 ): AuthService {
+
+    private val log = LoggerFactory.getLogger(javaClass)
     override fun registerUser(user: User) {
         userRepository.findUserByUsername(user.username)?.let {
             throw UserAlreadyRegisteredException()

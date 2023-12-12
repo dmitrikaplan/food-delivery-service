@@ -105,7 +105,7 @@ class JwtService{
             it.expiration
         }
 
-        return expiration.before(Date(System.currentTimeMillis()))
+        return !expiration.before(Date(System.currentTimeMillis()))
     }
 
     private fun isValidToken(jwtToken: String, key: Key): Boolean{

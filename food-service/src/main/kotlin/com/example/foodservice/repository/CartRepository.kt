@@ -9,4 +9,6 @@ interface CartRepository: JpaRepository<Cart, Int> {
 
     fun findCartByCartId(cartId: Int): Cart?
 
+    fun findCartByUserId(userId: Int): Cart?
+
 }

@@ -24,10 +24,11 @@ class FoodServiceImpl(
         }.contains(categoryName)
     }.take(pageSize!!)
 
-    override fun getPageByFoodName(pageNumber: Int, foodName: String) = foodRepository.findAllByFoodNameContaining(
-        PageRequest.of(pageNumber, pageSize!!),
-        foodName
-    )
+    override fun getPageByFoodName(pageNumber: Int, foodName: String) =
+        foodRepository.findAllByFoodNameContaining(
+            PageRequest.of(pageNumber, pageSize!!),
+            foodName
+        )
 
     override fun addFood(food: Food){
         food.categories = food.categories.map {
