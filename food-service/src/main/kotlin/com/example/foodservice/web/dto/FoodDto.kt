@@ -5,6 +5,6 @@ data class FoodDto(
     val foodName: String,
     val description: String,
     val price: Int,
-    val imageUrl: String,
+    val base64Image: String,
     val categories: List<CategoryDto>
 )

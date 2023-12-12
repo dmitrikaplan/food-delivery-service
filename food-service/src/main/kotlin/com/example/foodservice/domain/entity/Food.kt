@@ -18,7 +18,7 @@ class Food{
     lateinit var foodName : String
     lateinit var description : String
     var price: Int? = null
-    lateinit var imageUrl : String
+    lateinit var base64Image : String
 
     @ManyToMany(mappedBy = "food")
     var categories: List<Category> = mutableListOf()

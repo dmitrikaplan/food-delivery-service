@@ -18,7 +18,7 @@ class PaymentController(
     private val log = LoggerFactory.getLogger(javaClass)
 
     @PostMapping
-    fun createCart(@RequestBody payment: PaymentDto): ResponseEntity<Int> {
+    fun createPayment(@RequestBody payment: PaymentDto): ResponseEntity<Int> {
         return try {
             ResponseEntity.ok().body(paymentService.createPayment(payment.userId, payment.cardNumber, payment.expiryDate))
         } catch (e: UserNotFoundException) {
@@ -28,10 +28,10 @@ class PaymentController(
     }
 
     @GetMapping("/{userId}")
-    fun getOrder(@PathVariable userId: Int): ResponseEntity<List<PaymentDto>>{
+    fun getPayment(@PathVariable userId: Int): ResponseEntity<List<PaymentDto>>{
         return try{
-            val order = paymentService.getPaymentsByUserId(userId = userId).map(PaymentConverter::toDto)
-            ResponseEntity.ok().body(order)
+            val payments = paymentService.getPaymentsByUserId(userId = userId).map(PaymentConverter::toDto)
+            ResponseEntity.ok().body(payments)
         } catch (e: UserNotFoundException){
             log.error(e.message)
             ResponseEntity.badRequest().build()
