@@ -4,6 +4,6 @@ import org.springframework.stereotype.Service
 
 @Service
 interface CartService {
-    fun create(userId: Int): Int
+    fun create(username: String): Int
     fun delete(cartId: Int)
 }

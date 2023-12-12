@@ -15,8 +15,8 @@ class CartServiceImpl(
 ): CartService {
 
     @Transactional
-    override fun create(userId: Int): Int {
-        val user = userRepository.findUserById(userId)
+    override fun create(username: String): Int {
+        val user = userRepository.findUserByUsername(username)
             ?: throw UserNotFoundException()
 
         val cart = Cart().apply { this.user = user }

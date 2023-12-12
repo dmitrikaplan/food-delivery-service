@@ -5,8 +5,10 @@ import com.example.foodservice.domain.exception.cartDetail.CartDetailNotFoundExc
 import com.example.foodservice.domain.exception.food.FoodNotFoundException
 import com.example.foodservice.service.CartDetailService
 import com.example.foodservice.web.dto.CartDetailDto
+import com.example.foodservice.web.validation.OnUpdate
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -37,10 +39,13 @@ class CartDetailController(
     }
 
     @PutMapping
-    fun update(@RequestBody cartDetailDto: CartDetailDto): ResponseEntity<Any> {
+    fun update(
+        @RequestBody @Validated(OnUpdate::class)
+        cartDetailDto: CartDetailDto
+    ): ResponseEntity<Any> {
         return try{
             cartDetailService.update(
-                cartDetailId = cartDetailDto.cartDetailId,
+                cartDetailId = cartDetailDto.cartDetailId!!,
                 quantity = cartDetailDto.quantity
             )
             ResponseEntity.ok().build()
