@@ -5,7 +5,7 @@ import com.example.foodservice.web.dto.PaymentDto
 
 object PaymentConverter: Converter<PaymentDto, Payment> {
     override fun toDto(entity: Payment) = PaymentDto(
-        paymentId = entity.paymentId!!,
+        paymentId = entity.paymentId,
         userId = entity.user.id!!,
         cardNumber = entity.cardNumber!!.toInt(),
         expiryDate = entity.expireDate,
