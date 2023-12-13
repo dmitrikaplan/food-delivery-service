@@ -22,7 +22,7 @@ class Order{
     var orderId: Int? = null
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     lateinit var user : User
 
     @ManyToOne(fetch = FetchType.LAZY)

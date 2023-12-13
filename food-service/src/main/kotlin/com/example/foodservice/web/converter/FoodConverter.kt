@@ -10,7 +10,7 @@ object FoodConverter: Converter<FoodDto, Food> {
         entity.foodName,
         entity.description,
         entity.price!!,
-        entity.base64Image,
+        entity.imageUrl,
         entity.categories.map(CategoryConverter::toDto)
     )
 
@@ -19,7 +19,7 @@ object FoodConverter: Converter<FoodDto, Food> {
         this.foodName = dto.foodName
         this.description = dto.description
         this.price = dto.price
-        this.base64Image = dto.base64Image
+        this.imageUrl = dto.imageUrl
         this.categories = dto.categories.map(CategoryConverter::toEntity)
     }
 
